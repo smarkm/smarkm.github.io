@@ -3,9 +3,6 @@ layout: default
 title: 测试
 ---
 
-## hello smarkm
+## {{ page.title }}
 
-### hello world
-<h2>{{ page.title }}</h2>
-　　<p>我的第一篇文章</p>
-　　<p>{{ page.date | date_to_string }}</p>
+this is a testt page

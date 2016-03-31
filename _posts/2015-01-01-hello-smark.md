@@ -1,6 +1,6 @@
 ---
-layout:default
-title:测试
+layout: default
+title: 测试
 ---
 
 ## hello smarkm

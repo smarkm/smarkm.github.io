@@ -1,7 +1,8 @@
 ---
-layout:default
-title:测试
+layout: default
+title: Hello Smark
 ---
+
 ## hello smarkm
 
 ### hello world

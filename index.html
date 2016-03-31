@@ -2,12 +2,9 @@
 　　layout: default
 　　title: 我的Blog
 ---
-<<<<<<< HEAD
-=======
 
->>>>>>> f0e8dc6779a96fd93a4f2301c2ff506f2a1adaa1
 　　<h2>{{ page.title }}</h2>
-　　<p>最新文章</p>{{ site}} | {{ post }}
+　　<p>最新文章</p>
 　　<ul>
 　　　　{% for post in site.posts %}
 　　　　　　<li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>

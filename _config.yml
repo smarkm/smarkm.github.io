@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Smark Home Site
 subtitle:
 description:
 author: Smark
@@ -39,10 +39,10 @@ relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   auto_detect: false
-  tab_replace:
-  
+  tab_replace: "    "
+highlight_theme: night bright
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
@@ -73,6 +73,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: sparrow
+#theme: cactus-dark
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

@@ -2,7 +2,7 @@
 title: 在RCP程序中使用JS Chart产品显示图表
 date: 2016-11-22 21：07:35
 tags:
-- JAVA
+- Java
 - RCP
 - Chart
 categories: Java

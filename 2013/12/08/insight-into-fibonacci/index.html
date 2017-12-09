@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>Smark Home Site</title>
+	<script src="https://use.fontawesome.com/21ae12a9ad.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/jquery.js"></script>
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
+	<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  
+	<script src="https://github.com/isagalaev/highlight.js/blob/master/src/highlight.js"></script>
+	
+</head>
+<body>
+	<div class="col-md-3 col-sm-3  slide navbar-fixed-top">
+		<header class="sidebar-header" role="banner">
+				<a href="/">
+					<img src="/img/1.jpg" class="img-circle">
+				</a>
+				<h3 class="title"> 
+					<a href="/"></a>
+			</h3>
+			</header>
+
+			<div id="bio" class="text-center">
+				Software Engineer
+			</div>
+
+			<div id="contact-list" class="text-center">
+				<ul class="list-unstyled list-inline">
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://github.com/smarkm">
+							<i class="fa fa-github-alt fa-lg"></i>
+						</a>
+					</li>
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="mailto:smark@freecoop.net">
+							<i class="fa fa-envelope fa-lg"></i>
+						</a>
+					</li>
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://twitter.com/smarkmeng">
+							<i class="fa fa-twitter fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://www.gitbook.com/@smarkm">
+							<i class="fa fa-book fa-lg"></i>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+	</div>
+	
+   
+    <div class="col-md-9 pull-right">
+    				<div class="dropdown s-menu pull-right" >
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			    <span class="glyphicon glyphicon-menu-hamburger"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			    <li>
+			    	<a href="/">
+			    	<span class="glyphicon glyphicon-home"></span> 
+			    	首页</a>
+			    </li>
+			     <li>
+			    	<a href="/categories/About">
+			    	<span class="glyphicon glyphicon-folder-open"></span> 
+			    	分类</a>
+			    </li>
+			     <li>
+			    	<a href="/tags/About" >
+			    	<span class="glyphicon glyphicon-tags"></span> 
+			    	标签</a>
+			    </li>
+			  </ul>
+			</div>
+
+		<div class="" style="margin-left:20px;margin-right:80px">
+<h2  ><a class="post-title"  href="/2013/12/08/insight-into-fibonacci/">Java 实现斐波那契数列方式浅析</a></h2>
+<hr>
+        2013/12/8
+     <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Fibonacci的算法很简单，下述三种实现也没什么好解释，重要的是从不同的实现中来了解不同方式所带来开销和好处：</p>
+<h2 id="Java-实现方式"><a href="#Java-实现方式" class="headerlink" title="Java 实现方式"></a>Java 实现方式</h2><h3 id="1-基于变量交换实现"><a href="#1-基于变量交换实现" class="headerlink" title="1 基于变量交换实现"></a>1 基于变量交换实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">variableFibo</span><span class="params">(<span class="keyword">int</span> preN)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> a=<span class="number">0</span>,b=<span class="number">1</span>,c = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; preN; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (i&lt;<span class="number">2</span>) &#123;</div><div class="line">            c= i;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            c= a+b;</div><div class="line">            a=b;</div><div class="line">            b=c;</div><div class="line">        &#125;</div><div class="line">         System.out.print(c+<span class="string">" "</span>);</div><div class="line">    &#125;</div><div class="line">    System.out.println();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-基于数组实现"><a href="#2-基于数组实现" class="headerlink" title="2 基于数组实现"></a>2 基于数组实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">withArrayFibo</span><span class="params">(<span class="keyword">int</span> preN)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span> [preN];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; preN; i++) &#123;  </div><div class="line">        arr[i] = i&lt;<span class="number">2</span>?i:arr[i-<span class="number">1</span>]+arr[i-<span class="number">2</span>];</div><div class="line">        System.out.print(arr[i] +<span class="string">" "</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-递归实现"><a href="#3-递归实现" class="headerlink" title="3 递归实现"></a>3 递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">recursiveFibo</span><span class="params">(<span class="keyword">int</span> preN)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; preN; i++) &#123;</div><div class="line">        System.out.print(getFibo(i)+<span class="string">" "</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>  <span class="title">getFibo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> n&lt;<span class="number">2</span>?n:getFibo(n-<span class="number">1</span>)+getFibo(n-<span class="number">2</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="浅析"><a href="#浅析" class="headerlink" title="浅析"></a>浅析</h2><p><code>没有限制条件的单纯比较哪种方式好坏是不负责任的（for 部分经验欠缺的面试官）</code></p>
+<p>第一种实现充分的利用了变量，不会有额外的堆、栈开销，额外的赋值开销；</p>
+<p>第二种实现是充分利用了内存，更确切的说是利用了堆；</p>
+<p>第三种实现充分的利用了栈空间，递归消耗栈资源很容易理解；</p>
+<p>对于程序而言无非从cpu、内存、处理时间等角度来平衡,万事理皆通解决问题是平衡各种资源的能力，要充分了解不同资源使用所带来的好处与开销。</p>
+
+     <hr>
+     
+
+<div class="tags">
+        <a href="tags">
+            <span class="glyphicon glyphicon-tags">&nbsp;</span> 
+            <a href="/tags/Java/" class="button small">Java</a> | <a href="/tags/Tips/" class="button small">Tips</a> | <a href="/tags/面试/" class="button small">面试</a>
+        </a>
+        &nbsp;
+        <a href="categories">
+            <span class="glyphicon glyphicon-folder-open">&nbsp;</span> 
+            <a href="/categories/Tips/" class="button small">Tips</a>
+        </a>
+</div>
+ </div> 
+		<div class="row"></div>
+        <div class="container-fluid" style="text-algin:center;">
+	        <footer id="footer">
+  
+  <div class="outer bottom">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Smark
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261121789'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1261121789%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+  </div>
+</footer>
+        </div>
+	</div>
+</body>
+</html>

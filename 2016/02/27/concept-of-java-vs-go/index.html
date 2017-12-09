@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>Smark Home Site</title>
+	<script src="https://use.fontawesome.com/21ae12a9ad.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/jquery.js"></script>
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
+	<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  
+	<script src="https://github.com/isagalaev/highlight.js/blob/master/src/highlight.js"></script>
+	
+</head>
+<body>
+	<div class="col-md-3 col-sm-3  slide navbar-fixed-top">
+		<header class="sidebar-header" role="banner">
+				<a href="/">
+					<img src="/img/1.jpg" class="img-circle">
+				</a>
+				<h3 class="title"> 
+					<a href="/"></a>
+			</h3>
+			</header>
+
+			<div id="bio" class="text-center">
+				Software Engineer
+			</div>
+
+			<div id="contact-list" class="text-center">
+				<ul class="list-unstyled list-inline">
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://github.com/smarkm">
+							<i class="fa fa-github-alt fa-lg"></i>
+						</a>
+					</li>
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="mailto:smark@freecoop.net">
+							<i class="fa fa-envelope fa-lg"></i>
+						</a>
+					</li>
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://twitter.com/smarkmeng">
+							<i class="fa fa-twitter fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://www.gitbook.com/@smarkm">
+							<i class="fa fa-book fa-lg"></i>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+	</div>
+	
+   
+    <div class="col-md-9 pull-right">
+    				<div class="dropdown s-menu pull-right" >
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			    <span class="glyphicon glyphicon-menu-hamburger"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			    <li>
+			    	<a href="/">
+			    	<span class="glyphicon glyphicon-home"></span> 
+			    	首页</a>
+			    </li>
+			     <li>
+			    	<a href="/categories/About">
+			    	<span class="glyphicon glyphicon-folder-open"></span> 
+			    	分类</a>
+			    </li>
+			     <li>
+			    	<a href="/tags/About" >
+			    	<span class="glyphicon glyphicon-tags"></span> 
+			    	标签</a>
+			    </li>
+			  </ul>
+			</div>
+
+		<div class="" style="margin-left:20px;margin-right:80px">
+<h2  ><a class="post-title"  href="/2016/02/27/concept-of-java-vs-go/">Java 和 Golang 一些重要概念对比</a></h2>
+<hr>
+        2016/2/27
+     <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Golang经过几年的发展已经开始展示其存在的价值，目前有很多优秀的项目是基于Golang开发的，包括Docker、Kubernetes、etcd、OpenShift等都是非常成功的，并且都是开源。本文将主要从语法、概念等角度对Golang 和 Java 进行对比，关于Java与Golang在程序设计和语言本身设计的对比有兴趣的同学可以参考下<a href="">sdfsd</a></p>
+<h2 id="Package-和-Main-函数"><a href="#Package-和-Main-函数" class="headerlink" title="Package 和 Main 函数"></a>Package 和 Main 函数</h2><p>Golang 中的 package 和 Java 中的 package基本一致，都是通过关键字 <code>package</code> 来定义，不同的是 Golang package 定义不需要写全路径名，比如定义一个 package <code>org.smark.text</code> ,Golang 中只需要将最后一层 folder 作为 package 名：</p>
+<p>Java 定义 package：<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> org.smark.text</div></pre></td></tr></table></figure></p>
+<p>Go 定义 package：<br><figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> text</div></pre></td></tr></table></figure></p>
+<p>Golang 中推荐的 package 名为小写且为单词，而不是两个词链接或下划线，比如如果定义networktools的包，Java中我们可以定义<code>networktools</code> 或 <code>network.tools</code> 而 Goalng中推荐的是以 <code>network</code> 作为 parent folder，<code>tools</code> 作为 package 名字。</p>
+<h3 id="引入-package"><a href="#引入-package" class="headerlink" title="引入 package"></a>引入 package</h3><figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> (</div><div class="line">    <span class="string">"fmt"</span></div><div class="line">    <span class="string">"org/smark/text"</span></div><div class="line">)</div></pre></td></tr></table></figure>
+<p>在引入 package 的时候 Golang 中直接引入path package ，如上述示例，在使用时我们只需要用 <code>text</code> 作为访问器即可。</p>
+<h3 id="main-函数"><a href="#main-函数" class="headerlink" title="main 函数"></a>main 函数</h3><p>Golang 和 Java 一样都是以 <code>main</code> 函数作为程序入口，不同的是 Golang 中 main 函数必须声明在 main package 下。</p>
+<p>Golang main：<br><figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;&#125;</div></pre></td></tr></table></figure></p>
+<p>Golang 会在 main package 下查找 main 函数。</p>
+<h2 id="变量和常量"><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h2><p>Java 定义变量和常量：<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> i;</div><div class="line">String name;</div><div class="line">String email = <span class="string">"xx@yyy.com"</span>;</div></pre></td></tr></table></figure></p>
+<p>Golang 定义变量和常量：<br><figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span>(</div><div class="line">    PI := <span class="number">3.14</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">var</span> i <span class="keyword">int</span></div><div class="line"><span class="keyword">var</span> name <span class="keyword">string</span></div><div class="line">email := <span class="string">"xx@yyy.com"</span> <span class="comment">//自动推倒类型</span></div></pre></td></tr></table></figure></p>
+<h2 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h2><p>相对于 Java 的控制语句 Golang 的控制语句更灵活和简洁，Golang中不需要在控制条件上加入<code>&quot;()&quot;</code>,但主题上必须使用 <code>&quot;{}&quot;</code>。if 和 switch 同 for语句一样可以接受可选的c初始化语句，同时还有一个包含类型选择和多路通信复用器的新控制结构：select。 </p>
+<p>简单的 if 语句：<br><figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span> &#123;</div><div class="line">	<span class="keyword">return</span> y</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>带初始化语句的 if：<br><figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> err := file.Chmod(<span class="number">0664</span>); err != <span class="literal">nil</span> &#123; <span class="comment">//引用自官方文档</span></div><div class="line">	log.Print(err)</div><div class="line">	<span class="keyword">return</span> err</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>for 语句的形式：<br><figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 如同C的for循环                  //引用自官方文档</span></div><div class="line"><span class="keyword">for</span> init; condition; post &#123; &#125;</div><div class="line"><span class="comment">// 如同C的while循环</span></div><div class="line"><span class="keyword">for</span> condition &#123; &#125;</div><div class="line"><span class="comment">// 如同C的for(;;)循环</span></div><div class="line"><span class="keyword">for</span> &#123; &#125;</div></pre></td></tr></table></figure></p>
+<p>switch 的灵活性让我们可以避免写 if-else-if-else 这样的语句：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">unhex</span><span class="params">(c <span class="keyword">byte</span>)</span> <span class="title">byte</span></span> &#123;     <span class="comment">//引用自官网文档</span></div><div class="line">	<span class="keyword">switch</span> &#123;</div><div class="line">	<span class="keyword">case</span> <span class="string">'0'</span> &lt;= c &amp;&amp; c &lt;= <span class="string">'9'</span>:</div><div class="line">		<span class="keyword">return</span> c - <span class="string">'0'</span></div><div class="line">	<span class="keyword">case</span> <span class="string">'a'</span> &lt;= c &amp;&amp; c &lt;= <span class="string">'f'</span>:</div><div class="line">		<span class="keyword">return</span> c - <span class="string">'a'</span> + <span class="number">10</span></div><div class="line">	<span class="keyword">case</span> <span class="string">'A'</span> &lt;= c &amp;&amp; c &lt;= <span class="string">'F'</span>:</div><div class="line">		<span class="keyword">return</span> c - <span class="string">'A'</span> + <span class="number">10</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Golang 中的 case 更灵活，在Java 中直到 Java 7 中 case 语句才可以使用 String 类型。</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>Golang 的函数同 Java的函数定义有很大的不同，Golang的函数可以有多个返回值，同时函数可以定义可选的<code>接收者</code>，在Java 中所有的函数都是定义在 Class 下面，我们通过Class 或 Class 的实例来调用函数；Golang 中函数的接收者可以类比看作是函数是作用在哪种种类型上的：</p>
+<p>Golang 函数定义：<br><figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(file *File)</span> <span class="title">Write</span><span class="params">(b []<span class="keyword">byte</span>)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span>  //<span class="title">func</span> <span class="params">(接收者定义)</span> 函数名<span class="params">(参数定义)</span> （返回值定义）</span></div></pre></td></tr></table></figure></p>
+<p>在C 语言中返回局部变量的指针时，在使用时会有问题，Golang 函数中返回局部变量的指针是可以的。</p>
+<h2 id="数据初始化"><a href="#数据初始化" class="headerlink" title="数据初始化"></a>数据初始化</h2><p>Golang 通过关键字 <code>new</code> 和 <code>make</code> 来初始化变量和内容，<code>make</code> 只用于初始化切片(slice)、映射(map) 和 通道(channel)，<br>···</p>
+<h2 id="类型和接口"><a href="#类型和接口" class="headerlink" title="类型和接口"></a>类型和接口</h2><h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><h2 id="垃圾回收器"><a href="#垃圾回收器" class="headerlink" title="垃圾回收器"></a>垃圾回收器</h2>
+     <hr>
+     
+
+<div class="tags">
+        <a href="tags">
+            <span class="glyphicon glyphicon-tags">&nbsp;</span> 
+            <a href="/tags/Golang/" class="button small">Golang</a> | <a href="/tags/go/" class="button small">go</a>
+        </a>
+        &nbsp;
+        <a href="categories">
+            <span class="glyphicon glyphicon-folder-open">&nbsp;</span> 
+            <a href="/categories/Golang/" class="button small">Golang</a>
+        </a>
+</div>
+ </div> 
+		<div class="row"></div>
+        <div class="container-fluid" style="text-algin:center;">
+	        <footer id="footer">
+  
+  <div class="outer bottom">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Smark
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261121789'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1261121789%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+  </div>
+</footer>
+        </div>
+	</div>
+</body>
+</html>

@@ -2,3 +2,11 @@
 .post-title{color: #e74c3c}
 .sidebar-header{text-align: center;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;}
 .s-menu{position: fixed;top: 45px;right: 45px;}
+table{width: 100%;}
+
+.keyword{color:hsl(285, 69%, 31%) }
+.function .title{font: bold;color: #2c4aa4}
+.code .string{color: rgb(58, 58, 204);}
+.code .number{color: rgb(253, 170, 15)}
+.code .params{color: rgba(236, 166, 14, 0.891)}
+.code .comment{color: gray}

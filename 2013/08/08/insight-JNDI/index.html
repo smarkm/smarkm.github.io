@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>Smark Home Site</title>
+	<script src="https://use.fontawesome.com/21ae12a9ad.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/jquery.js"></script>
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
+	<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  
+	<script src="https://github.com/isagalaev/highlight.js/blob/master/src/highlight.js"></script>
+	
+</head>
+<body>
+	<div class="col-md-3 col-sm-3  slide navbar-fixed-top">
+		<header class="sidebar-header" role="banner">
+				<a href="/">
+					<img src="/img/1.jpg" class="img-circle">
+				</a>
+				<h3 class="title"> 
+					<a href="/"></a>
+			</h3>
+			</header>
+
+			<div id="bio" class="text-center">
+				Software Engineer
+			</div>
+
+			<div id="contact-list" class="text-center">
+				<ul class="list-unstyled list-inline">
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://github.com/smarkm">
+							<i class="fa fa-github-alt fa-lg"></i>
+						</a>
+					</li>
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="mailto:smark@freecoop.net">
+							<i class="fa fa-envelope fa-lg"></i>
+						</a>
+					</li>
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://twitter.com/smarkmeng">
+							<i class="fa fa-twitter fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://www.gitbook.com/@smarkm">
+							<i class="fa fa-book fa-lg"></i>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+	</div>
+	
+   
+    <div class="col-md-9 pull-right">
+    				<div class="dropdown s-menu pull-right" >
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			    <span class="glyphicon glyphicon-menu-hamburger"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			    <li>
+			    	<a href="/">
+			    	<span class="glyphicon glyphicon-home"></span> 
+			    	首页</a>
+			    </li>
+			     <li>
+			    	<a href="/categories/About">
+			    	<span class="glyphicon glyphicon-folder-open"></span> 
+			    	分类</a>
+			    </li>
+			     <li>
+			    	<a href="/tags/About" >
+			    	<span class="glyphicon glyphicon-tags"></span> 
+			    	标签</a>
+			    </li>
+			  </ul>
+			</div>
+
+		<div class="" style="margin-left:20px;margin-right:80px">
+<h2  ><a class="post-title"  href="/2013/08/08/insight-JNDI/">浅谈JNDI的使用</a></h2>
+<hr>
+        2013/8/8
+     <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>关于什么是JNDI的概念这里不做解释，本文作为初学者根据所了解到内容做些总结，主要内容如下：</p>
+<pre><code>1 JNDI使用描述
+2 Tomcat中DataSource的配置和使用
+3 Weblogic中JNDI的配置和使用
+4 访问分布式JNDI的条件
+</code></pre><h3 id="1-JNDI使用描述"><a href="#1-JNDI使用描述" class="headerlink" title="1 JNDI使用描述"></a>1 JNDI使用描述</h3><p><img src="/imgs/jndi.png" alt="image"><br>图1-1</p>
+<p><strong>JNDI Service</strong>：J2EE容器 包括Tomcat、Jetty、Weblogic、WebSphere等，提供对JNDI的支持</p>
+<p><strong>SPIs</strong>: 基于JNDI实现的目录服务包括DNS、LDAP、CORBA、Window注册表等（有能力你也可以做）</p>
+<p><strong>JNDI ENV</strong>：JNDI上下文，关于JNDI服务的环境参数在本地访问和分布式访问时我们的程序在初始化JNDI上下文时回有所不同（稍后介绍）</p>
+<p><strong>Application</strong>：我们的应用程序打算使用JNDI提供的服务</p>
+<p>在我们的应用程序中会经常使用到JNDI提供的资源（废话），比如说使用DataSource进行数据库操作，访问Window注册表，使用NDS服务等，我们可以通过服务提供的支持方便的在服务器上进行这些服务的配置，我们的应用程序就可以方便的使用这些服务了。使用JNDI服务很简单</p>
+<ul>
+<li>1 得到JNDI上下文；</li>
+<li>2 在上写文中更加名字寻找要使用的对象或资源。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">Context ctx= <span class="keyword">new</span> InitialContext();</div><div class="line">ctx.lookup(<span class="string">"resName"</span>);</div></pre></td></tr></table></figure>
+<p><code>注意：上述代码一定是在本地环境下使用（也就是你的应用跑在和配置的JNDI在同一个服务器上），这样你就可以再你的代码中直接使用得到的对象或资源了，接下来就看一下我们如何在Tomcat下使用通过JNDI配置提供的DataSource。</code></p>
+<h3 id="2-Tomcat中的DataSource配置和使用（Tomcat7）"><a href="#2-Tomcat中的DataSource配置和使用（Tomcat7）" class="headerlink" title="2 Tomcat中的DataSource配置和使用（Tomcat7）"></a>2 Tomcat中的DataSource配置和使用（Tomcat7）</h3><p>   1)在Tomcat的conf目录下找到context.xml添加如下配置<br><figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Resource</span> </span></div><div class="line"><span class="tag">       <span class="attr">name</span>=<span class="string">"jdbc/test"</span> </span></div><div class="line"><span class="tag">       <span class="attr">auth</span>=<span class="string">"Container"</span> </span></div><div class="line"><span class="tag">       <span class="attr">type</span>=<span class="string">"javax.sql.DataSource"</span></span></div><div class="line"><span class="tag">       <span class="attr">maxActive</span>=<span class="string">"100"</span> </span></div><div class="line"><span class="tag">       <span class="attr">maxIdle</span>=<span class="string">"30"</span> </span></div><div class="line"><span class="tag">       <span class="attr">maxWait</span>=<span class="string">"10000"</span></span></div><div class="line"><span class="tag">       <span class="attr">username</span>=<span class="string">"root"</span> </span></div><div class="line"><span class="tag">       <span class="attr">password</span>=<span class="string">"123456"</span> </span></div><div class="line"><span class="tag">       <span class="attr">driverClassName</span>=<span class="string">"com.mysql.jdbc.Driver"</span></span></div><div class="line"><span class="tag">       <span class="attr">url</span>=<span class="string">"jdbc:mysql://localhost:3306/test"</span></span></div><div class="line"><span class="tag">    /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>   2）在项目的WEB-INF目录下的web.xml中声明服务器对其的配置<br><figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">resource-ref</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">description</span>&gt;</span>DB Connection<span class="tag">&lt;/<span class="name">description</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">res-ref-name</span>&gt;</span>jdbc/test<span class="tag">&lt;/<span class="name">res-ref-name</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">res-type</span>&gt;</span>javax.sql.DataSource<span class="tag">&lt;/<span class="name">res-type</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">res-auth</span>&gt;</span>Container<span class="tag">&lt;/<span class="name">res-auth</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">resource-ref</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>   3）程序中使用我们配置的DataSource（这里简单起见我你们在Jsp中演示）<br><figure class="highlight jsp"><table><tr><td class="code"><pre><div class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">"javax.naming.InitialContext"</span>%&gt;</div><div class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">"javax.naming.Context"</span>%&gt;</div><div class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">"javax.sql.DataSource"</span>%&gt;</div><div class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=utf-8"</span></div><div class="line">    pageEncoding=<span class="string">"utf-8"</span>%&gt;</div><div class="line"></div><div class="line">&lt;%</div><div class="line">    Context initContext = <span class="keyword">new</span> InitialContext();</div><div class="line">    DataSource ds = (DataSource)initContext.lookup(<span class="string">"java:comp/env/jdbc/test"</span>);</div><div class="line">    out.print(ds);</div><div class="line">    </div><div class="line">%&gt;</div></pre></td></tr></table></figure></p>
+<p>4）显示结果（Tomcat基于dbcp提供DataSource实现）<br><img src="http://img.blog.csdn.net/20130808181820937?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnJlZXdvcmttYW4=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p><code>注意：1、这里对上下文环境并没有进行配置，因为相对于你的程序而言Tomcat环境就是你的本地环境，说以他会自动找到JNDI上下文中帮顶的资源；2:、我们配置的资源吗为&quot;java:/comp/env/&quot;命名空间的这个在不同的可能是不同的。</code></p>
+<h3 id="3-Weblogic中JNDI资源的配置（这里以数据源配置为例）"><a href="#3-Weblogic中JNDI资源的配置（这里以数据源配置为例）" class="headerlink" title="3 Weblogic中JNDI资源的配置（这里以数据源配置为例）"></a>3 Weblogic中JNDI资源的配置（这里以数据源配置为例）</h3><h4 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h4><p>Weblogic的配置就比较简单了，这里就不在浪费流量，注意在配置完数据源时一定要把它应用到你的Server上才能测试成功；<br><img src="http://img.blog.csdn.net/20130808180930515?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnJlZXdvcmttYW4=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<h4 id="本地访问"><a href="#本地访问" class="headerlink" title="本地访问"></a>本地访问</h4><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">Context initContext = <span class="keyword">new</span> InitialContext();</div><div class="line">DataSource ds = (DataSource)initContext.lookup(<span class="string">"test/db"</span>);</div><div class="line">out.print(ds);</div></pre></td></tr></table></figure>
+<h4 id="显示结果（这是weblogic自己实现的DataSource）"><a href="#显示结果（这是weblogic自己实现的DataSource）" class="headerlink" title="显示结果（这是weblogic自己实现的DataSource）"></a>显示结果（这是weblogic自己实现的DataSource）</h4><p><img src="http://img.blog.csdn.net/20130808182118125?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnJlZXdvcmttYW4=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<h4 id="通过客户端远程访问"><a href="#通过客户端远程访问" class="headerlink" title="通过客户端远程访问"></a>通过客户端远程访问</h4><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">Properties env = <span class="keyword">new</span> Properties();</div><div class="line">    env.put(Context.INITIAL_CONTEXT_FACTORY,<span class="string">"weblogic.jndi.WLInitialContextFactory"</span>);</div><div class="line">    env.put(Context.PROVIDER_URL, <span class="string">"t3://localhost:7003"</span>);</div><div class="line">    Context ctx = <span class="keyword">new</span> InitialContext(env);</div><div class="line">    DataSource ds = (DataSource) ctx.lookup(<span class="string">"test/db"</span>);</div><div class="line">    System.out.println(ds);</div></pre></td></tr></table></figure>
+<h4 id="Console输出"><a href="#Console输出" class="headerlink" title="Console输出"></a>Console输出</h4><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">ClusterableRemoteRef(-<span class="number">645461901847124827</span>S:<span class="number">127.0</span>.0.1:[<span class="number">7003</span>,<span class="number">7003</span>,-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>]</div><div class="line"></div><div class="line">:base_domain:AdminServer [-<span class="number">645461901847124827</span>S:<span class="number">127.0</span>.0.1:[<span class="number">7003</span>,<span class="number">7003</span>,-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>]</div><div class="line"></div><div class="line">:base_domain:AdminServer/<span class="number">287</span>])/<span class="number">287</span></div></pre></td></tr></table></figure>
+<h2 id="4-分布式访问JNDI的资源"><a href="#4-分布式访问JNDI的资源" class="headerlink" title="4 分布式访问JNDI的资源"></a>4 分布式访问JNDI的资源</h2><p>这个也相对比较简单就是和3中Weblogic中客户端远程访问一样，要指定JNDI资源所在的位置和上下文产生的工场：</p>
+<pre><code>1 Context.INITIAL_CONTEXT_FACTORY这个参数指定上下文产生的工场类，这个是不同容器不同配置的，根据所选容器文档来就可以了；
+2 Context.PROVIDER_URL通过此参数指定JNDI资源的位置。当然JNDI上下文的配置和操作远不止这些，对上述有些大致了解相信会有一定帮助。
+</code></pre><p>总结：这里只是简单的描述了一下JNDI通过Tomcat和Weblogic的数据原配进行一个大致的了解，对于不同的容器和不同的JNDI服务自己根据需求去了解就可以了。</p>
+
+     <hr>
+     
+
+<div class="tags">
+        <a href="tags">
+            <span class="glyphicon glyphicon-tags">&nbsp;</span> 
+            <a href="/tags/Java/" class="button small">Java</a>
+        </a>
+        &nbsp;
+        <a href="categories">
+            <span class="glyphicon glyphicon-folder-open">&nbsp;</span> 
+            <a href="/categories/Java/" class="button small">Java</a>
+        </a>
+</div>
+ </div> 
+		<div class="row"></div>
+        <div class="container-fluid" style="text-algin:center;">
+	        <footer id="footer">
+  
+  <div class="outer bottom">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Smark
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261121789'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1261121789%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+  </div>
+</footer>
+        </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>Smark Home Site</title>
+	<script src="https://use.fontawesome.com/21ae12a9ad.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/jquery.js"></script>
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
+	<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  
+	<script src="https://github.com/isagalaev/highlight.js/blob/master/src/highlight.js"></script>
+	
+</head>
+<body>
+	<div class="col-md-3 col-sm-3  slide navbar-fixed-top">
+		<header class="sidebar-header" role="banner">
+				<a href="/">
+					<img src="/img/1.jpg" class="img-circle">
+				</a>
+				<h3 class="title"> 
+					<a href="/"></a>
+			</h3>
+			</header>
+
+			<div id="bio" class="text-center">
+				Software Engineer
+			</div>
+
+			<div id="contact-list" class="text-center">
+				<ul class="list-unstyled list-inline">
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://github.com/smarkm">
+							<i class="fa fa-github-alt fa-lg"></i>
+						</a>
+					</li>
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="mailto:smark@freecoop.net">
+							<i class="fa fa-envelope fa-lg"></i>
+						</a>
+					</li>
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://twitter.com/smarkmeng">
+							<i class="fa fa-twitter fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://www.gitbook.com/@smarkm">
+							<i class="fa fa-book fa-lg"></i>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+	</div>
+	
+   
+    <div class="col-md-9 pull-right">
+    				<div class="dropdown s-menu pull-right" >
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			    <span class="glyphicon glyphicon-menu-hamburger"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			    <li>
+			    	<a href="/">
+			    	<span class="glyphicon glyphicon-home"></span> 
+			    	首页</a>
+			    </li>
+			     <li>
+			    	<a href="/categories/About">
+			    	<span class="glyphicon glyphicon-folder-open"></span> 
+			    	分类</a>
+			    </li>
+			     <li>
+			    	<a href="/tags/About" >
+			    	<span class="glyphicon glyphicon-tags"></span> 
+			    	标签</a>
+			    </li>
+			  </ul>
+			</div>
+
+		<div class="" style="margin-left:20px;margin-right:80px">
+<h2  ><a class="post-title"  href="/2018/02/09/ether-models/">以太坊 Block 模型</a></h2>
+<hr>
+        2018/2/9
+     <p><strong>声明</strong> 文中使用的代码为源码，查看源码参加repo：<a href="https://github.com/ethereum/go-ethereum" target="_blank" rel="external">https://github.com/ethereum/go-ethereum</a></p>
+<figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Block represents an entire block in the Ethereum blockchain.</span></div><div class="line"><span class="keyword">type</span> Block <span class="keyword">struct</span> &#123;</div><div class="line">    header       *Header</div><div class="line">    uncles       []*Header</div><div class="line">    transactions Transactions</div><div class="line"></div><div class="line">    <span class="comment">// caches</span></div><div class="line">    hash atomic.Value</div><div class="line">    size atomic.Value</div><div class="line"></div><div class="line">    <span class="comment">// Td is used by package core to store the total difficulty</span></div><div class="line">    <span class="comment">// of the chain up to and including the block.</span></div><div class="line">    td *big.Int</div><div class="line"></div><div class="line">    <span class="comment">// These fields are used by package eth to track</span></div><div class="line">    <span class="comment">// inter-peer block relay.</span></div><div class="line">    ReceivedAt   time.Time</div><div class="line">    ReceivedFrom <span class="keyword">interface</span>&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="keyword">type</span> Header <span class="keyword">struct</span> &#123;</div><div class="line">    ParentHash  common.Hash    <span class="string">`json:"parentHash"       gencodec:"required"`</span></div><div class="line">    UncleHash   common.Hash    <span class="string">`json:"sha3Uncles"       gencodec:"required"`</span></div><div class="line">    Coinbase    common.Address <span class="string">`json:"miner"            gencodec:"required"`</span></div><div class="line">    Root        common.Hash    <span class="string">`json:"stateRoot"        gencodec:"required"`</span></div><div class="line">    TxHash      common.Hash    <span class="string">`json:"transactionsRoot" gencodec:"required"`</span></div><div class="line">    ReceiptHash common.Hash    <span class="string">`json:"receiptsRoot"     gencodec:"required"`</span></div><div class="line">    Bloom       Bloom          <span class="string">`json:"logsBloom"        gencodec:"required"`</span></div><div class="line">    Difficulty  *big.Int       <span class="string">`json:"difficulty"       gencodec:"required"`</span></div><div class="line">    Number      *big.Int       <span class="string">`json:"number"           gencodec:"required"`</span></div><div class="line">    GasLimit    <span class="keyword">uint64</span>         <span class="string">`json:"gasLimit"         gencodec:"required"`</span></div><div class="line">    GasUsed     <span class="keyword">uint64</span>         <span class="string">`json:"gasUsed"          gencodec:"required"`</span></div><div class="line">    Time        *big.Int       <span class="string">`json:"timestamp"        gencodec:"required"`</span></div><div class="line">    Extra       []<span class="keyword">byte</span>         <span class="string">`json:"extraData"        gencodec:"required"`</span></div><div class="line">    MixDigest   common.Hash    <span class="string">`json:"mixHash"          gencodec:"required"`</span></div><div class="line">    Nonce       BlockNonce     <span class="string">`json:"nonce"            gencodec:"required"`</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><em>common.Hash</em> 32位hash码</li>
+</ul>
+<p><strong>Transaction</strong><br><figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="keyword">type</span> Transaction <span class="keyword">struct</span> &#123;</div><div class="line">    data txdata</div><div class="line">    <span class="comment">// caches</span></div><div class="line">    hash atomic.Value</div><div class="line">    size atomic.Value</div><div class="line">    from atomic.Value</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>txdata</strong><br><figure class="highlight go"><table><tr><td class="code"><pre><div class="line"><span class="keyword">type</span> txdata <span class="keyword">struct</span> &#123;</div><div class="line">    AccountNonce <span class="keyword">uint64</span>          <span class="string">`json:"nonce"    gencodec:"required"`</span></div><div class="line">    Price        *big.Int        <span class="string">`json:"gasPrice" gencodec:"required"`</span></div><div class="line">    GasLimit     <span class="keyword">uint64</span>          <span class="string">`json:"gas"      gencodec:"required"`</span></div><div class="line">    Recipient    *common.Address <span class="string">`json:"to"       rlp:"nil"`</span> <span class="comment">// nil means contract creation</span></div><div class="line">    Amount       *big.Int        <span class="string">`json:"value"    gencodec:"required"`</span></div><div class="line">    Payload      []<span class="keyword">byte</span>          <span class="string">`json:"input"    gencodec:"required"`</span></div><div class="line"></div><div class="line">    <span class="comment">// Signature values</span></div><div class="line">    V *big.Int <span class="string">`json:"v" gencodec:"required"`</span></div><div class="line">    R *big.Int <span class="string">`json:"r" gencodec:"required"`</span></div><div class="line">    S *big.Int <span class="string">`json:"s" gencodec:"required"`</span></div><div class="line"></div><div class="line">    <span class="comment">// This is only used when marshaling to JSON.</span></div><div class="line">    Hash *common.Hash <span class="string">`json:"hash" rlp:"-"`</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+     <hr>
+     
+
+<div class="tags">
+        <a href="tags">
+            <span class="glyphicon glyphicon-tags">&nbsp;</span> 
+            <a href="/tags/ether-model/" class="button small">ether model</a>
+        </a>
+        &nbsp;
+        <a href="categories">
+            <span class="glyphicon glyphicon-folder-open">&nbsp;</span> 
+            <a href="/categories/ethereum/" class="button small">ethereum</a>
+        </a>
+</div>
+ </div> 
+		<div class="row"></div>
+        <div class="container-fluid" style="text-algin:center;">
+	        <footer id="footer">
+  
+  <div class="outer bottom">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Smark
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261121789'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1261121789%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+  </div>
+</footer>
+        </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>Smark Home Site</title>
+	<script src="https://use.fontawesome.com/21ae12a9ad.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/jquery.js"></script>
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
+	<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  
+	<script src="https://github.com/isagalaev/highlight.js/blob/master/src/highlight.js"></script>
+	
+</head>
+<body>
+	<div class="col-md-3 col-sm-3  slide navbar-fixed-top">
+		<header class="sidebar-header" role="banner">
+				<a href="/">
+					<img src="/img/1.jpg" class="img-circle">
+				</a>
+				<h3 class="title"> 
+					<a href="/"></a>
+			</h3>
+			</header>
+
+			<div id="bio" class="text-center">
+				Software Engineer
+			</div>
+
+			<div id="contact-list" class="text-center">
+				<ul class="list-unstyled list-inline">
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://github.com/smarkm">
+							<i class="fa fa-github-alt fa-lg"></i>
+						</a>
+					</li>
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="mailto:smark@freecoop.net">
+							<i class="fa fa-envelope fa-lg"></i>
+						</a>
+					</li>
+
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://twitter.com/smarkmeng">
+							<i class="fa fa-twitter fa-lg"></i>
+						</a>
+					</li>
+					<li>
+						<a class="btn btn-default btn-sm" target="_blank" href="https://www.gitbook.com/@smarkm">
+							<i class="fa fa-book fa-lg"></i>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+	</div>
+	
+   
+    <div class="col-md-9 pull-right">
+    				<div class="dropdown s-menu pull-right" >
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			    <span class="glyphicon glyphicon-menu-hamburger"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			    <li>
+			    	<a href="/">
+			    	<span class="glyphicon glyphicon-home"></span> 
+			    	首页</a>
+			    </li>
+			     <li>
+			    	<a href="/categories/About">
+			    	<span class="glyphicon glyphicon-folder-open"></span> 
+			    	分类</a>
+			    </li>
+			     <li>
+			    	<a href="/tags/About" >
+			    	<span class="glyphicon glyphicon-tags"></span> 
+			    	标签</a>
+			    </li>
+			  </ul>
+			</div>
+
+		<div class="" style="margin-left:20px;margin-right:80px">
+<h2  ><a class="post-title"  href="/2018/02/06/crowdsale/"></a></h2>
+<hr>
+        2018/2/6
+     <h3 id="为你的idea众筹"><a href="#为你的idea众筹" class="headerlink" title="为你的idea众筹"></a>为你的idea众筹</h3><p>有时候一个好的想法需要大量的资金和集体的努力。你可能会需要捐赠， 但是捐赠者更倾向于给予项目他们更确定的是获得动力和适当的资金。这是一个众筹很理想的例子: 你设置一个目标和h截止日期。如果你没有实现这个目标，捐赠会返还，以此来减少捐赠者的风险。 因为代码是公开可审计的，没有必要集中控制， 值得信赖的平台因此，每个人都要支付的唯一费用就是gas。</p>
+<h4 id="Tokens-and-DAOs"><a href="#Tokens-and-DAOs" class="headerlink" title="Tokens and DAOs"></a>Tokens and DAOs</h4><p>在这个例子中，我们将通过解决两个重要问题来进行更好的众筹: 如何管理和保持回报, 以及这些钱是如何在筹集到资金之后被花掉的。<br>众筹的回报通常由一个无法改变的数据库来处理，它可以跟踪所有的捐赠者:  任何错过了竞选活动最后期限的人都无法进入，任何改变主意的捐赠者都无法离开。 相反，我们要做的是去中心化的方法然后创建一个 <a href="./token">token</a> 来跟踪回报, 任何有贡献的人都会得到一个token，他们可以交易、出售或保存。当给予物质奖励的时候生产者只需要交换真产品的代币。 捐赠者可以保留他们的标记，即使这个项目没有达到他们的目的，作为纪念品。</p>
+<p>此外，一般来说，那些资助的人在资金筹集和管理不善的情况下无法对资金的使用情况有任何发言权，往往导致项目根本无法提供任何东西。 在这个项目中，我们将使用一个民主组织<a href="./dao">Democratic Organization</a>，它将必须批准从系统中获得的任何资金。 这通常被称为众筹或群体权益这是非常基本的，在某些情况下，令牌可以是奖励本身,This is often called a <strong>crowdsale</strong> or <strong>crowd equity</strong> and is so fundamental that in some cases the token can be the reward itself, 特别是在一些项目中，一群人聚在一起，共同建设公共公益事业。</p>
+<p><img src="https://ethereum.org/images/tutorial/token-crowdsale.png" alt="Get the necessary contracts"></p>
+<ul>
+<li><p>果您只是测试，将钱包切换到testnet并开始挖掘。</p>
+</li>
+<li><p>首先, 创建一个 <a href="./token#the-code">fixed supply token</a>.对于这个例子，我们要创建一个 <strong>100</strong>， 使用名字 <strong>gadgets</strong>, the box emoji (📦) as a symbol and <strong>0</strong> decimal places. 部署并保持地址。</p>
+</li>
+<li><p>现在创建一个 <a href="./dao#the-shareholder-association">shareholder association</a>. In this example we are going to use the address of the token we just created as the <strong>Shares Address</strong>, a minimum quorum of <strong>10</strong>, and <strong>1500</strong> minutes (25 hours) as the voting time. Deploy this contract and save the address.</p>
+</li>
+</ul>
+<h4 id="The-code"><a href="#The-code" class="headerlink" title="The code"></a>The code</h4><p>现在复制这段代码，然后创建众筹:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">!!!include(solidity/crowdsale.sol)!!!</div></pre></td></tr></table></figure>
+<h4 id="Code-highlights"><a href="#Code-highlights" class="headerlink" title="Code highlights"></a>Code highlights</h4><p>注意，<strong>Crowdsale</strong>功能(the one that is called upon contract creation)中是如何设置 <strong>deadline</strong> and <strong>fundingGoal</strong> 的。</p>
+<pre><code>fundingGoal = fundingGoalInEthers * 1 ether;
+deadline = now + durationInMinutes * 1 minutes;
+price = etherCostOfEachToken * 1 ether;
+</code></pre><p>有一些 <a href="https://solidity.readthedocs.io/en/latest/units-and-global-variables.html" target="_blank" rel="external">special keywords</a> 在solidity中帮助你编码，in solidity that help you code, 允许你评估一些l类似 <strong>1 ether == 1000 finney</strong> 或者 <strong>2 days == 48 hours</strong>. 在系统内部，所有的ether含量都被定义为 <strong>wei</strong>,最小可分的单位，最小可分的单位。 The code above converts the funding goal into wei by multiplying it by 1,000,000,000,000,000,000 (which is what the special keyword <strong>ether</strong> converts into). The next line creates a timestamp that is exactly X minutes away from today by also using a combination of the special keywords <strong>now</strong> and <strong>minutes</strong>. For more global keywords, check the <a href="https://solidity.readthedocs.io/en/latest/units-and-global-variables.html" target="_blank" rel="external">solidity documentation on Globally available variables</a>.</p>
+<p>The following line will instantiate a contract at a given address:</p>
+<pre><code>tokenReward = token(addressOfTokenUsedAsReward);
+</code></pre><p>Notice that the contract understands what a <em>token</em> is because we defined it earlier by starting the code with:</p>
+<pre><code>interface token { function transfer(address receiver, uint amount){  } }
+</code></pre><p>This doesn’t fully describe how the contract works or all the functions it has, but describes only the ones this contract needs: a token is a contract with a <em>transfer</em> function, and we have one at this address.</p>
+<h4 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use"></a>How to use</h4><p>点击 <strong>contracts</strong> 然后 <strong>deploy contract</strong>:</p>
+<p><img src="https://ethereum.org/images/tutorial/crowdsale-deploy.png" alt="Crowdsale deployment"></p>
+<ul>
+<li><p>设置你刚刚创建的组织的地址 <strong>if successful, send to</strong>.</p>
+</li>
+<li><p>设置 <strong>250</strong> ethers 为融资目标</p>
+</li>
+<li><p>如果你只是为了进行测试或演示,将众筹的持续时间设置为3-10分钟， 但是如果你真的在筹集资金你可以投入更大的资金, 列如 <strong>45,000</strong> (31 days).</p>
+</li>
+<li><p>The <strong>ether cost of each token</strong> 应该根据你准备出售多少代币来计算. (在前面的步骤中，您添加的令牌的“初始供应”数量的最大值).在本例中，放入5个 ether.</p>
+</li>
+<li><p>您创建的令牌的地址应该添加到 <strong>token reward address</strong></p>
+</li>
+</ul>
+<p>设置一个汽油价格，点击部署，等待你的众筹. 一旦创建了众筹页面，你现在就需要存足够的钱来支付回报。点击众筹的地址，然后进行存款和发送 <strong>50 gadgets</strong> to the crowdsale.</p>
+<p><strong>I have 100 gadgets. Why not sell them all?</strong></p>
+<p>这是非常重要的一点。我们正在构建的众筹将完全由令牌持有人控制。这就造成了一个危险，即控制所有标记的50%+1的人将能够将所有的资金发送给自己。你可以尝试在关联合同上创建特殊的代码来防止这些恶意的收购, 或者你可以把所有的资金都发送到一个简单的地址.简单地说，我们只是简单地卖掉了一半的小工具: 如果您想进一步分散它，则将剩下的一半分配给受信任的组织。</p>
+<h4 id="筹集资金"><a href="#筹集资金" class="headerlink" title="筹集资金"></a>筹集资金</h4><p>一旦众筹完成了所有必要的token,对它的贡献很简单，你可以从任何以太钱包里完成:只要把钱寄给它就行了。您可以在这里看到相关的代码:</p>
+<pre><code>function () {
+    require(!crowdsaleClosed);
+    uint amount = msg.value;
+    // ...
+</code></pre><p>The <a href="https://solidity.readthedocs.io/en/latest/contracts.html#fallback-function" target="_blank" rel="external">unnamed function</a> is the default function executed whenever a contract receives ether. 这个功能会自动检查众筹活动是否活跃， 计算调用者购买了多少个令牌，并发送相应的令牌。 如果众包已经结束或者合同没有签订合同，合同就会终止 <strong>throw</strong> meaning the execution will be stopped and 发送的以太将被返回 (但是所有的气体都会被花掉).</p>
+<p><img src="https://ethereum.org/images/tutorial/crowdsale-error.png" alt="Crowdsale error"></p>
+<p>这样做的好处是合同可以防止陷入这样一种情况即有人会离开他们的以太或代币. 在之前的版本中，我们也会<a href="https://solidity.readthedocs.io/en/latest/units-and-global-variables.html#contract-related" target="_blank" rel="external"><strong>self destruct</strong></a> 众筹结束后的合同: 这意味着在那一刻之后的任何交易都将失去他们的资金. 通过创建一个回退功能,把销售结束后,我们防止任何人失去钱。</p>
+<p>The contract has a safeWithdrawl() function,没有任何参数,可以执行由受益人的访问或资助者回到他们的基金募捐失败的情况。</p>
+<p><img src="https://ethereum.org/images/tutorial/crowdsale-execute.png" alt="Crowdsale execution"></p>
+<h3 id="Extending-the-crowdsale"><a href="#Extending-the-crowdsale" class="headerlink" title="Extending the crowdsale"></a>Extending the crowdsale</h3><h4 id="如果众筹超过了目标，那该怎么办"><a href="#如果众筹超过了目标，那该怎么办" class="headerlink" title="如果众筹超过了目标，那该怎么办?"></a>如果众筹超过了目标，那该怎么办?</h4><p>在我们的代码中，只有两件事可以发生:众筹达到目标，或者没有实现。 由于令牌数量有限，这意味着一旦达到目标，就没有其他人能够做出贡献。 不过，众筹的历史上充斥着超出预期的项目，比预期的时间要短得多，或者比预期的要多出很多倍。</p>
+<h4 id="Unlimited-crowdsale"><a href="#Unlimited-crowdsale" class="headerlink" title="Unlimited crowdsale"></a>Unlimited crowdsale</h4><p>所以我们要稍微修改一下我们的项目而不是发送一组有限的令牌<br>, 实际上，每当有人给他们发送以太的时候，这个项目就会凭空创造出一个新的令牌。首先，我们需要创建一个 <a href="./token#central-mint">Mintable token</a>.</p>
+<p>然后修改众包以重命名所有提到的 <strong>transfer</strong> to <strong>mintToken</strong>:</p>
+<pre><code>contract token { function mintToken(address receiver, uint amount){  } }
+// ...
+    function () {
+        // ...
+        tokenReward.mintToken(msg.sender, amount / price);
+        // ...
+    }
+</code></pre><p>一旦你发布了众包销售合同，你就可以获得它的地址并进入你的公司。 <strong>Token Contract</strong> to execute a <strong>Change Ownership</strong> function. This will allow your crowdsale to call the <strong>Mint Token</strong> function as much as it wants.</p>
+<p><strong>Warning:</strong>  This opens you to the danger of hostile takeover. At any point during the crowdsale anyone who donates more than the amount already raised will be able to control the whole pie and steal it. There are many strategies to prevent that, but implementing will be left as an exercise to the reader:</p>
+<ul>
+<li>Modify the crowdsale such that when a token is bought, also send the same quantity of tokens to the founder’s account so that they always control 50% of the project</li>
+<li>Modify the Organization to create a veto power to some trusted third party that could stop any hostile proposal</li>
+<li>Modify the token to allow a central trusted party to freeze token accounts, so as to require a verification that there isn’t any single entity controlling a majority of them</li>
+</ul>
+
+     <hr>
+     
+
+<div class="tags">
+        <a href="tags">
+            <span class="glyphicon glyphicon-tags">&nbsp;</span> 
+            
+        </a>
+        &nbsp;
+        <a href="categories">
+            <span class="glyphicon glyphicon-folder-open">&nbsp;</span> 
+            
+        </a>
+</div>
+ </div> 
+		<div class="row"></div>
+        <div class="container-fluid" style="text-algin:center;">
+	        <footer id="footer">
+  
+  <div class="outer bottom">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Smark
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261121789'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1261121789%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+  </div>
+</footer>
+        </div>
+	</div>
+</body>
+</html>

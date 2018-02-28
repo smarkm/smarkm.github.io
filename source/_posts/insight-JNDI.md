@@ -3,7 +3,8 @@ title: 浅谈JNDI的使用
 date: 2013-08-08 18:40:30
 tags:
 - Java
-categories: Java
+categories: 
+    Java
 ---
 ## 概述
 关于什么是JNDI的概念这里不做解释，本文作为初学者根据所了解到内容做些总结，主要内容如下：

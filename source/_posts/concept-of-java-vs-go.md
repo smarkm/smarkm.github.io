@@ -105,6 +105,7 @@ func unhex(c byte) byte {     //引用自官网文档
 		return c - 'a' + 10
 	case 'A' <= c && c <= 'F':
 		return c - 'A' + 10
+		
 	}
 	return 0
 }
